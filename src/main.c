@@ -5,10 +5,13 @@
 #include "number_game.h"
 
 void testing();
+#include "test.h"
+#include "rsa.h"
 
 int main() {
     run_game();
 
+    genPrime();
     return 0;
 }
 
