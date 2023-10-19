@@ -6,9 +6,10 @@
 #include <time.h>
 // This is purely for c practice and learning.
 
-int gen_answer() {
-    srand(time(NULL));
-    return rand() % 100 + 1;
+void seed_rand() {
+    struct timespec ts;
+    timespec_get(&ts, TIME_UTC);
+    srand(ts.tv_nsec);
 }
 
 int game_loop(int answer, int* tries) {
@@ -57,9 +58,9 @@ int game_loop(int answer, int* tries) {
 void run_game() {
     printf("--- Welcome to the guessing game! ---\n");
 
-    int correct_answer = gen_answer();
+    seed_rand();
+    int correct_answer = rand() % 100 + 1;
     int tries = 1;
-    printf("Correct: %d\n", correct_answer);
 
     int state = GAME_STATE_CONTINUE;
     while (1) {
@@ -78,6 +79,8 @@ void run_game() {
             if (input[0] != 'y') {
                 break;
             }
+            correct_answer = rand() % 100 + 1;
+            tries = 1;
         }
     }
 }
