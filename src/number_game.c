@@ -2,12 +2,13 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <time.h>
 // This is purely for c practice and learning.
 
 int gen_answer() {
     srand(time(NULL));
-    return rand() % 100;
+    return rand() % 100 + 1;
 }
 
 int game_loop(int answer, int* tries) {
@@ -20,6 +21,11 @@ int game_loop(int answer, int* tries) {
     if (NULL == fgets(input, sizeof(input), stdin)) {
         printf("Input error!\n");
         return GAME_STATE_CONTINUE;
+    }
+
+    if (input[strlen(input)] == '\0' && input[strlen(input) - 1] != '\n') {
+        int ch;
+        while ((ch = fgetc(stdin)) != '\n' && ch != EOF);
     }
 
     if (input[0] == 'q' && input[1] == '\n') {
