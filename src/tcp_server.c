@@ -7,7 +7,7 @@
 #include <netinet/in.h>
 #include <unistd.h>
 
-int main() {
+int tcp_server() {
     
     char server_message[256] = "You have reached the server!";
     // create the server socket

@@ -7,7 +7,7 @@
 #include <netinet/in.h>
 #include <unistd.h>
 
-int main() {
+int tcp_client() {
     
     // create a socket
     int network_socket;
