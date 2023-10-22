@@ -20,11 +20,11 @@ int main() {
         switch (choice[0]) {
             case 's':
                 printf("Booting up a server on port 9002...\n");
-                tcp_server();
+                tcp_server(9002, "Hello there human being");
                 break;
             case 'c':
                 printf("Booting up a client on port 9002...\n");
-                tcp_client();
+                tcp_client(9002);
                 break;
             case 'q':
                 printf("Goodbye\n");

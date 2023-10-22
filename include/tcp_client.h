@@ -1,4 +1,4 @@
 #pragma once
 
-int tcp_client(void);
+int tcp_client(int port);
 

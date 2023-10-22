@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include <sys/types.h>
 #include <sys/socket.h>
@@ -7,9 +8,9 @@
 #include <netinet/in.h>
 #include <unistd.h>
 
-int tcp_server() {
+int tcp_server(int port, char server_message[256]) {
     
-    char server_message[256] = "You have reached the server!";
+    // char server_message[256] = "You have reached the server!";
     // create the server socket
     int server_socket;
     server_socket = socket(AF_INET, SOCK_STREAM, 0);
@@ -17,7 +18,7 @@ int tcp_server() {
     // define the server address
     struct sockaddr_in server_address;
     server_address.sin_family = AF_INET;
-    server_address.sin_port = htons(9002);
+    server_address.sin_port = htons(port);
     server_address.sin_addr.s_addr = INADDR_ANY;
 
     // bind the socket to our specified IP and port
@@ -29,7 +30,7 @@ int tcp_server() {
     client_socket = accept(server_socket, NULL, NULL);
     
     // send the message
-    send(client_socket, server_message, sizeof(server_message), 0);
+    send(client_socket, server_message, strlen(server_message), 0);
 
     // close the socket
     close(server_socket);

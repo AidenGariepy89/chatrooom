@@ -7,7 +7,7 @@
 #include <netinet/in.h>
 #include <unistd.h>
 
-int tcp_client() {
+int tcp_client(int port) {
     
     // create a socket
     int network_socket;
@@ -16,7 +16,7 @@ int tcp_client() {
     // specify an address for the socket
     struct sockaddr_in server_address;
     server_address.sin_family = AF_INET;
-    server_address.sin_port = htons(9002);
+    server_address.sin_port = htons(port);
     server_address.sin_addr.s_addr = INADDR_ANY;
 
     int connection_status = connect(network_socket, (struct sockaddr *) &server_address, sizeof(server_address));
